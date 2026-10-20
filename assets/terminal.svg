@@ -1,139 +1,171 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 380" width="100%" height="100%">
   <defs>
     <!-- 배경 그라데이션 -->
-    <radialGradient id="bgGlow" cx="70%" cy="30%" r="60%">
-      <stop offset="0%" stop-color="#161b22" stop-opacity="0.9" />
-      <stop offset="100%" stop-color="#0d1117" stop-opacity="1" />
-    </radialGradient>
+    <linearGradient id="mainBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1017" />
+      <stop offset="100%" stop-color="#04070a" />
+    </linearGradient>
 
-    <!-- 타이틀 네온 그라데이션 -->
-    <linearGradient id="accentTitle" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#38ef7d" />
-      <stop offset="100%" stop-color="#11998e" />
+    <!-- 네온 시안/에메랄드 그라데이션 -->
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2dd4bf" />
+      <stop offset="100%" stop-color="#38bdf8" />
     </linearGradient>
 
     <style>
-      .term-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", monospace; font-size: 13px; fill: #6e7681; }
-      .code-font { font-family: monospace; }
-      .prompt { fill: #38ef7d; font-size: 14px; font-weight: 600; }
-      .name { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 34px; font-weight: 900; fill: #ffffff; }
-      .handle { font-size: 15px; fill: #6e7681; }
-      .role { font-size: 20px; font-weight: 800; fill: url(#accentTitle); letter-spacing: 0.5px; }
-      .desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 14px; fill: #8b949e; }
+      .mono-text { font-family: ui-monospace, SFMono-Regular, "SF Pro Text", Menlo, Consolas, monospace; }
+      .ui-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
       
-      .tag-bg { fill: #161b22; stroke: #30363d; stroke-width: 1; rx: 6px; }
-      .tag-text { font-size: 13px; fill: #58a6ff; font-weight: 600; }
+      /* 타이포그래피 */
+      .title-head { font-size: 32px; font-weight: 900; fill: #ffffff; letter-spacing: -0.5px; }
+      .role-tag { font-size: 15px; font-weight: 700; fill: url(#brandGrad); letter-spacing: 0.5px; }
+      .sub-desc { font-size: 13px; fill: #94a3b8; line-height: 1.5; }
+      .cmd-label { font-size: 12px; font-weight: 600; fill: #2dd4bf; }
+      
+      /* UI 컴포넌트 */
+      .card-bg { fill: #0f172a; stroke: #1e293b; stroke-width: 1.2; rx: 8px; }
+      .metric-val { font-size: 20px; font-weight: 800; fill: #38bdf8; }
+      .metric-lbl { font-size: 11px; fill: #64748b; font-weight: 500; }
+      
+      .pill-bg { fill: #131d2e; stroke: #1e293b; stroke-width: 1; rx: 12px; }
+      .pill-text { font-size: 11px; fill: #cbd5e1; font-weight: 600; }
 
-      .stat-num { font-size: 24px; font-weight: 900; fill: #f0f6fc; }
-      .stat-unit { font-size: 14px; font-weight: normal; fill: #8b949e; }
-      .stat-label { font-size: 12px; fill: #8b949e; }
-
-      /* 파이프라인 박스 스타일 */
-      .pipe-box { fill: #161b22; stroke: #30363d; stroke-width: 1.2; rx: 8px; }
-      .pipe-active { stroke: #38ef7d; stroke-width: 1.5; }
-      .pipe-label { font-family: monospace; font-size: 11px; fill: #8b949e; text-anchor: middle; }
-      .pipe-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; font-weight: 700; fill: #f0f6fc; text-anchor: middle; }
-
-      /* 깜빡임 및 데이터 패킷 이동 애니메이션 */
-      .cursor { animation: blink 1.2s infinite; }
-      @keyframes blink { 0%, 45% { opacity: 1; } 50%, 100% { opacity: 0; } }
-
-      .flow-line { stroke: #38ef7d; stroke-dasharray: 6, 6; animation: flowDash 1.5s linear infinite; }
-      @keyframes flowDash { to { stroke-dashoffset: -12; } }
-
-      .online-dot { fill: #38ef7d; animation: onlineBlink 2s infinite; }
-      @keyframes onlineBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+      /* 애니메이션 */
+      @keyframes softBlink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.2; }
+      }
+      .cursor-blink { animation: softBlink 1.1s infinite; fill: #2dd4bf; }
+      .pulse-signal { animation: softBlink 2.4s infinite ease-in-out; }
+      
+      @keyframes dashMove {
+        to { stroke-dashoffset: -16; }
+      }
+      .pipeline-flow {
+        stroke: #2dd4bf;
+        stroke-dasharray: 4, 4;
+        animation: dashMove 1.8s linear infinite;
+      }
     </style>
   </defs>
 
-  <!-- 프레임 창 -->
-  <rect x="2" y="2" width="896" height="436" rx="14" fill="url(#bgGlow)" stroke="#30363d" stroke-width="1.5" />
+  <!-- 바깥 프레임 -->
+  <rect x="2" y="2" width="916" height="376" rx="16" fill="url(#mainBg)" stroke="#1e293b" stroke-width="1.5" />
 
-  <!-- 상단 헤더 -->
-  <circle cx="28" cy="22" r="6" fill="#ff5f56" />
-  <circle cx="48" cy="22" r="6" fill="#ffbd2e" />
-  <circle cx="68" cy="22" r="6" fill="#27c93f" />
-  <text x="450" y="26" text-anchor="middle" class="term-title">saebom: ~/profile</text>
-  <circle cx="850" cy="22" r="4" class="online-dot" />
-  <text x="862" y="26" class="term-title" fill="#38ef7d" font-size="12px">active</text>
-  <line x1="2" y1="42" x2="898" y2="42" stroke="#21262d" stroke-width="1.2" />
+  <!-- 상단 컨트롤 헤더 -->
+  <circle cx="28" cy="22" r="5" fill="#f43f5e" />
+  <circle cx="44" cy="22" r="5" fill="#f59e0b" />
+  <circle cx="60" cy="22" r="5" fill="#10b981" />
+  
+  <rect x="350" y="10" width="220" height="24" rx="12" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+  <text x="460" y="26" text-anchor="middle" class="mono-text" fill="#64748b" font-size="11px">saebom.dev / pipeline-ops</text>
 
-  <!-- [좌측 영역]: 소개 및 스택 정보 -->
-  <text x="36" y="80" class="code-font prompt">$ whoami</text>
-  <text x="36" y="124" class="name">노새봄</text>
-  <text x="145" y="122" class="code-font handle">@hyun1216</text>
-  <text x="36" y="156" class="code-font role">RPA & Automation Engineer</text>
-  <rect x="345" y="138" width="9" height="20" fill="#38ef7d" class="cursor" />
-  <text x="36" y="186" class="desc">반복 업무를 제거하고 비즈니스 흐름을 최적화하는 엔지니어</text>
+  <circle cx="850" cy="22" r="4" fill="#10b981" class="pulse-signal" />
+  <text x="860" y="26" class="mono-text" fill="#10b981" font-size="11px">ONLINE</text>
+  <line x1="2" y1="42" x2="918" y2="42" stroke="#1e293b" stroke-width="1" />
 
-  <text x="36" y="228" class="code-font prompt">$ cat stack.txt</text>
-  <g transform="translate(36, 240)">
-    <rect x="0" y="0" width="75" height="28" class="tag-bg" />
-    <text x="37" y="19" text-anchor="middle" class="code-font tag-text">Python</text>
+  <!-- [좌측 섹션]: 엔지니어 프로필 & 핵심 스택 -->
+  <g transform="translate(36, 68)">
+    <text x="0" y="16" class="mono-text cmd-label">> SYSTEM.INIT("NO_SAEBOM")</text>
+    
+    <text x="0" y="54" class="ui-text title-head">노새봄</text>
+    <text x="110" y="52" class="mono-text role-tag">[ RPA & Workflow Architect ]</text>
+    <rect x="380" y="38" width="8" height="18" class="cursor-blink" />
+    
+    <text x="0" y="82" class="ui-text sub-desc">실무 병목을 분석하고, 결함 없는 엔드투엔드(E2E) 자동화 솔루션을 구축합니다.</text>
 
-    <rect x="85" y="0" width="55" height="28" class="tag-bg" />
-    <text x="112" y="19" text-anchor="middle" class="code-font tag-text">PAD</text>
+    <!-- 스택 태그 뱃지 -->
+    <g transform="translate(0, 108)">
+      <rect x="0" y="0" width="84" height="26" class="pill-bg" />
+      <text x="42" y="17" text-anchor="middle" class="mono-text pill-text">Python</text>
 
-    <rect x="150" y="0" width="100" height="28" class="tag-bg" />
-    <text x="200" y="19" text-anchor="middle" class="code-font tag-text">PowerShell</text>
+      <rect x="92" y="0" width="70" height="26" class="pill-bg" />
+      <text x="127" y="17" text-anchor="middle" class="mono-text pill-text">PAD</text>
 
-    <rect x="260" y="0" width="85" height="28" class="tag-bg" />
-    <text x="302" y="19" text-anchor="middle" class="code-font tag-text">REST API</text>
+      <rect x="170" y="0" width="98" height="26" class="pill-bg" />
+      <text x="219" y="17" text-anchor="middle" class="mono-text pill-text">PowerShell</text>
 
-    <rect x="355" y="0" width="70" height="28" class="tag-bg" />
-    <text x="390" y="19" text-anchor="middle" class="code-font tag-text">Docker</text>
+      <rect x="276" y="0" width="84" height="26" class="pill-bg" />
+      <text x="318" y="17" text-anchor="middle" class="mono-text pill-text">REST API</text>
+
+      <rect x="368" y="0" width="76" height="26" class="pill-bg" />
+      <text x="406" y="17" text-anchor="middle" class="mono-text pill-text">Docker</text>
+    </g>
+
+    <!-- 핵심 지표 3단 미니 대시보드 -->
+    <g transform="translate(0, 160)">
+      <!-- 지표 1 -->
+      <rect x="0" y="0" width="140" height="74" class="card-bg" />
+      <text x="16" y="32" class="mono-text metric-val">80%</text>
+      <text x="16" y="54" class="ui-text metric-lbl">업무 처리 시간 단축</text>
+
+      <!-- 지표 2 -->
+      <rect x="150" y="0" width="140" height="74" class="card-bg" />
+      <text x="166" y="32" class="mono-text metric-val">10+ 건</text>
+      <text x="166" y="54" class="ui-text metric-lbl">프로덕션 워크플로우</text>
+
+      <!-- 지표 3 -->
+      <rect x="300" y="0" width="144" height="74" class="card-bg" />
+      <text x="316" y="32" class="mono-text metric-val" fill="#10b981">99.9%</text>
+      <text x="316" y="54" class="ui-text metric-lbl">장애 내성 및 복구율</text>
+    </g>
   </g>
 
-  <!-- 실적 수치 -->
-  <g transform="translate(36, 315)">
-    <text x="0" y="24" class="stat-num">80<tspan class="stat-unit">%</tspan></text>
-    <text x="0" y="44" class="stat-label">업무 시간 단축</text>
+  <!-- 세로 구분선 -->
+  <line x1="510" y1="58" x2="510" y2="355" stroke="#1e293b" stroke-width="1.2" stroke-dasharray="4,4" />
 
-    <text x="130" y="24" class="stat-num">10<tspan class="stat-unit">건+</tspan></text>
-    <text x="130" y="44" class="stat-label">자동화 프로세스 배포</text>
+  <!-- [우측 섹션]: 실시간 아키텍처 워크플로우 스트림 -->
+  <g transform="translate(535, 68)">
+    <text x="10" y="16" class="mono-text cmd-label">> AUTOMATION_TOPOLOGY</text>
 
-    <text x="265" y="24" class="stat-num">Stable</text>
-    <text x="265" y="44" class="stat-label">무중단 예외 처리 설계</text>
-  </g>
+    <!-- 단계 1: Input Trigger -->
+    <g transform="translate(10, 38)">
+      <rect x="0" y="0" width="100" height="52" class="card-bg" />
+      <circle cx="16" cy="18" r="4" fill="#38bdf8" />
+      <text x="26" y="21" class="mono-text" fill="#94a3b8" font-size="10px">TRIGGER</text>
+      <text x="16" y="40" class="ui-text" fill="#ffffff" font-size="12px" font-weight="700">Schedule/API</text>
+    </g>
 
-  <!-- [우측 영역]: 자동화 파이프라인 흐름도 -->
-  <g transform="translate(530, 65)">
-    <!-- 1. Trigger -->
-    <rect x="15" y="20" width="95" height="50" class="pipe-box" />
-    <text x="62" y="40" class="pipe-label">STEP 01</text>
-    <text x="62" y="58" class="pipe-title">Trigger</text>
+    <!-- 연결선 1 -> 2 -->
+    <path d="M 110 64 L 140 64" stroke="#1e293b" stroke-width="2" />
+    <path d="M 110 64 L 140 64" class="pipeline-flow" stroke-width="2" />
 
-    <!-- 연결선 1 -->
-    <line x1="110" y1="45" x2="175" y2="45" stroke="#30363d" stroke-width="2" />
-    <line x1="110" y1="45" x2="175" y2="45" class="flow-line" stroke-width="2" />
+    <!-- 단계 2: Core Processing -->
+    <g transform="translate(140, 30)">
+      <rect x="0" y="0" width="190" height="68" rx="8" fill="#0f172a" stroke="#2dd4bf" stroke-width="1.4" />
+      <circle cx="18" cy="20" r="5" fill="#2dd4bf" class="pulse-signal" />
+      <text x="30" y="24" class="mono-text" fill="#2dd4bf" font-size="11px" font-weight="700">RPA ENGINE</text>
+      <text x="18" y="44" class="ui-text" fill="#ffffff" font-size="13px" font-weight="700">Data Extraction & Parse</text>
+      <text x="18" y="58" class="mono-text" fill="#64748b" font-size="10px">status: ACTIVE_RUNNING</text>
+    </g>
 
-    <!-- 2. Bot Process -->
-    <rect x="175" y="15" width="115" height="60" class="pipe-box pipe-active" />
-    <text x="232" y="38" class="pipe-label" fill="#38ef7d">RPA BOT</text>
-    <text x="232" y="58" class="pipe-title" fill="#38ef7d">Automate</text>
+    <!-- 연결선 2 -> 3 (분기 하강선) -->
+    <path d="M 235 98 L 235 130" stroke="#1e293b" stroke-width="2" />
+    <path d="M 235 98 L 235 130" class="pipeline-flow" stroke-width="2" />
 
-    <!-- 연결선 2 -->
-    <path d="M 290 45 L 315 45 L 315 135 L 275 135" fill="none" stroke="#30363d" stroke-width="2" />
-    <path d="M 290 45 L 315 45 L 315 135 L 275 135" fill="none" class="flow-line" stroke-width="2" />
+    <!-- 단계 3: Valid & Error Guard -->
+    <g transform="translate(140, 130)">
+      <rect x="0" y="0" width="190" height="54" class="card-bg" />
+      <text x="16" y="22" class="mono-text" fill="#f59e0b" font-size="10px">FAULT TOLERANCE</text>
+      <text x="16" y="42" class="ui-text" fill="#ffffff" font-size="12px" font-weight="700">Try-Catch & Auto Retry</text>
+    </g>
 
-    <!-- 3. Validation Check -->
-    <rect x="155" y="110" width="120" height="50" class="pipe-box" />
-    <text x="215" y="130" class="pipe-label">TRY / CATCH</text>
-    <text x="215" y="148" class="pipe-title">Valid Check</text>
+    <!-- 단계 4: Target Destination -->
+    <path d="M 140 157 L 90 157" stroke="#1e293b" stroke-width="2" />
+    <path d="M 140 157 L 90 157" class="pipeline-flow" stroke-width="2" />
 
-    <!-- 연결선 3 -->
-    <line x1="155" y1="135" x2="95" y2="135" stroke="#30363d" stroke-width="2" />
-    <line x1="155" y1="135" x2="95" y2="135" class="flow-line" stroke-width="2" />
+    <g transform="translate(10, 130)">
+      <rect x="0" y="0" width="80" height="54" class="card-bg" />
+      <text x="14" y="22" class="mono-text" fill="#10b981" font-size="10px">TARGET</text>
+      <text x="14" y="42" class="ui-text" fill="#ffffff" font-size="12px" font-weight="700">ERP / DB</text>
+    </g>
 
-    <!-- 4. Target Result -->
-    <rect x="15" y="110" width="80" height="50" class="pipe-box" />
-    <text x="55" y="130" class="pipe-label">TARGET</text>
-    <text x="55" y="148" class="pipe-title">ERP/DB</text>
-
-    <!-- 콘솔 로그 상태 박스 -->
-    <rect x="15" y="185" width="300" height="85" rx="6" fill="#0d1117" stroke="#21262d" stroke-width="1" />
-    <text x="30" y="210" class="code-font" font-size="11px" fill="#58a6ff">> worker-daemon --status</text>
-    <text x="30" y="232" class="code-font" font-size="11px" fill="#38ef7d">✔ Pipeline: RUNNING [24/7]</text>
-    <text x="30" y="254" class="code-font" font-size="11px" fill="#8b949e">✔ Handled Tasks: 1,420/day</text>
+    <!-- 하단 라이브 로그 스트림 -->
+    <g transform="translate(10, 204)">
+      <rect x="0" y="0" width="320" height="66" rx="6" fill="#020617" stroke="#1e293b" stroke-width="1" />
+      <text x="16" y="24" class="mono-text" font-size="11px" fill="#2dd4bf">> daemon --watch --pipeline</text>
+      <text x="16" y="42" class="mono-text" font-size="10px" fill="#64748b">[OK] Job completed without payload drop</text>
+      <text x="16" y="56" class="mono-text" font-size="10px" fill="#38bdf8">[INFO] Next cycle scheduled: 00:05:00</text>
+    </g>
   </g>
 </svg>
