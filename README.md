@@ -1,7 +1,6 @@
 <p align="center">
-  <img src="./assets/terminal.svg" width="100%" alt="Saebom Automation Ops" />
+  <img src="https://raw.githubusercontent.com/hyun1216/Saebom-Portfolio/main/assets/terminal.svg" width="100%" alt="Saebom Portfolio Terminal" />
 </p>
-
 
 <div align="center">
 
