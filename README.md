@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/hero-dark.svg" width="100%" alt="Hero Banner" />
+  <img src="./assets/terminal.svg" width="100%" alt="Hero Banner" />
 </p>
 
 
