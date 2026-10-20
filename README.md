@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="./assets/hero-dark.svg" width="100%" alt="Hero Banner" />
+</p>
+
+
 <div align="center">
 
 <!-- 터미널 타이핑 헤더 -->
