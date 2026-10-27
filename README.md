@@ -63,6 +63,14 @@
 
 ---
 
+### 📦 Previous Work & Background
+- **Enterprise RPA Experience**: 과거 엔터프라이즈 환경에서 레거시 ERP, 세무 회계 솔루션 연동 및 비즈니스 프로세스 자동화를 전담했던 기록입니다.  
+  👉 [RPA 실무 아카이브 둘러보기 (Repository)](https://github.com/hyun1216/RPA-Portfolio)
+
+<br/>
+
+---
+
 ## 🛠 Tech Stack
 
 ### Frontend & Web
