@@ -83,7 +83,7 @@
 <br/>
 
 
-### 🖍️ 04. Hangeul_zip (집에서한글)
+### 🖍️ 06. Hangeul_zip (집에서한글)
 **유아/초등 부모를 위한 엄마표 한글 파닉스 학습지 및 모바일 맞춤형 부모 해설지 제공 웹 플랫폼**
 
 `Next.js 14 (App Router)` · `Tailwind CSS` · `Supabase` · `Vercel`
@@ -96,6 +96,21 @@
   - **BaaS 기반 인증 & 구독 확장성 아키텍처**: Supabase Auth 및 Storage를 활용한 간편 로그인/학습지 관리 시스템 구축, 추후 월 구독형 정기결제(빌링키) 확장을 대비한 유저 결제 상태 및 다운로드 이력 DB 스키마 설계
     
 <br/>
+
+
+### 🎈 07. 소원하늘 (SowonSky)
+전 세계 사람들의 소원을 밤하늘 풍선으로 띄우고 교감하는 12시간 시한부 인터랙티브 웹 플랫폼  
+Next.js (App Router) · Tailwind CSS · Framer Motion · Supabase Realtime · Vercel
+- 🔗 Links: [GitHub Repository](https://github.com/hyun1216/SowonSky) ｜ [Live Demo](https://sowonsky.vercel.app/)
+- Key Implementations:
+  - **인터랙티브 글로벌 뷰 전환 (Map to Sky):** `react-simple-maps` 기반의 다크 테마 평면 세계 지도에서 특정 국가 선택 시 해당 국가의 밤하늘 캔버스로 자연스럽게 전환되는 줌인 트랜지션 연출
+  - **12시간 라이프사이클 & 파티클 모션:** `created_at` 기준 12시간 만료 시 Framer Motion을 통해 풍선이 팽창 후 별가루 파티클로 '펑!' 터지며 사라지는 시한부 수명 시스템 및 실시간 타이머 구현
+  - **Supabase 실시간 연동 (Realtime):** WebSocket 채널 구독을 통해 다른 사용자가 띄운 소원 풍선이 새로고침 없이 화면 하단에서 실시간으로 둥실 떠오르는 인터랙션과 응원(❤️) 카운트 동기화
+  - **무로그인 어뷰징 방어 & 위치 고정 파이프라인:** Vercel IP 헤더(`x-vercel-ip-country`)를 활용한 접속 지역 자동 판별, SHA-256 IP 해싱 기반 1일 2회 작성 제한, 다국어 및 극단적 유해 키워드 2중 정규식 필터링 적용
+ 
+<br/>
+
+
 ---
 
 ### 📦 Previous Work & Background
